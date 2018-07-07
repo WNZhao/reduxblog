@@ -8,8 +8,10 @@ import {Link} from "react-router-dom";
 class Nav extends Component{
 	render(){
 		return <nav>
-			<Link to="/">Home</Link>
+			<Link to="/">Home</Link> 
 			<Link to="/detail">Detail</Link>
 		</nav>;
 	}
 }
+
+export default Nav;

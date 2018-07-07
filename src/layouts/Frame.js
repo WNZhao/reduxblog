@@ -13,3 +13,5 @@ class Frame extends Component{
 		</div>;
 	}
 }
+
+export default Frame;
