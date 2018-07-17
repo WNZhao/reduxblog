@@ -20,7 +20,17 @@ module.exports = {
 				],
 				exclude:EXCLUDE_PATH,
 				include:APP_PATH,        
-			}
+			},
+			{
+				test:/\.css$/,
+				use:[
+					{loader:"style-loader"},
+					{loader:"css-loader"}
+				],
+				exclude:EXCLUDE_PATH,
+				include:APP_PATH,        
+			},
+
             
 		]
 	}
