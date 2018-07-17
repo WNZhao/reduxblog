@@ -1,5 +1,5 @@
 import React , {Component} from "react";
-import {Route} from "react-router-dom";
+import {Route,Switch} from "react-router-dom";
 import Nav from "./Nav";
 
 import Home from "../views/Home";
@@ -18,8 +18,10 @@ class Frame extends Component{
 				<Nav />
 			</section>
 			<section className="container">
+			   <div>
 				<Route path='/' component={Home} exact={true} />
 				<Route path='/detail' component={Detail} />
+			  </div>
 			</section>
 		</div>;
 	}

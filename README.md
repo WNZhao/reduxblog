@@ -13,3 +13,12 @@ components下放着的是每个入口页需要的组件、样式及Redux相关�
 容器组件和展示组件区别主是看是否感知redux，或者说，是否使用connect方法让组件redux的状态树中获取数据
 
 views/HomeRedux.js包含了Home页面所有组件相关的reducer及actionCreator
+
+使用router4 会报一个错误 
+
+> react-router-redux: Cannot read property 'listen' of undefined at syncHistoryWithStore
+> 注意安装哪下 https://brunolm.wordpress.com/2017/03/17/migrating-to-react-router-4-with-redux/
+> npm i -S history react-router react-router-redux
+> import { createBrowserHistory } from 'history';
+> react-router最新版本已经支持或参看 https://github.com/supasate/connected-react-router
+

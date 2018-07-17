@@ -4,12 +4,12 @@
 */
 
 import React from "react";
-import { HashRouter, Route, hashHistory, Switch} from "react-router-dom";
+import {Router, Route} from "react-router-dom"; //BrowserRouter 使用createBrowserHistory 
 import Frame from "../layouts/Frame";
 
-const routes = (<HashRouter history={hashHistory}><Switch>
+const routes = (history)=>(<Router history={history}>
 	<Route path='/' component={Frame}></Route>
-</Switch></HashRouter>);
+</Router>);
 
 
 

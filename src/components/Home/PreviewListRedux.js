@@ -1,8 +1,3 @@
-import { stat } from "fs";
-
-/* 
- preview 容器组件
-*/
 
 const initialState = {
     loading: true,
@@ -16,7 +11,8 @@ const LOAD_ARTICLES_ERROR = "LOAD_ARTICLES_ERROR";
 
 export function loadArticles() {
     return {
-        types: [LOAD_ARTICLES, LOAD_ARTICLES_SUCCESS, LOAD_ARTICLES_ERROR],
+        //types: [LOAD_ARTICLES, LOAD_ARTICLES_SUCCESS, LOAD_ARTICLES_ERROR],
+        type:LOAD_ARTICLES,
         url: '/api/articles.json'
     }
 }
@@ -24,24 +20,21 @@ export function loadArticles() {
 function previewList(state = initialState, action) {
     switch (action.type) {
         case LOAD_ARTICLES:
-            return {
-                ...state,
+            return Object.assign({},state,{
                 loading: true,
                 error: false
-            }
+            })
         case LOAD_ARTICLES_SUCCESS:
-            return {
-                ...state,
+            return  Object.assign({},state,{
                 loading: false,
                 error: false,
-                articleList:action.payload.articleList
-            }
+                articleList:action.payload.articleList,
+            });
         case LOAD_ARTICLES_ERROR:
-            return {
-                ...state,
+            return  Object.assign({},state,{
                 loading: false,
-                error: true
-            }
+                error: true,
+            });
 
         default:
             return state;

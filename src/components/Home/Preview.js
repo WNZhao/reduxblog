@@ -3,14 +3,11 @@
 */
 
 import React,{Component} from "react";
+import PropTypes from 'prop-types'; //see https://reactjs.org/docs/typechecking-with-proptypes.html  has moved into a different package since React v15.5. Please use the prop-types library instead.
 import "./Preview.css";
 
-export default class Preview extends Comment{
-    static propTypes = {
-        title:React.propTypes.string,
-        link:React.propTypes.string
-    };
 
+class Preview extends Comment{
     render(){
         return <article className="article-preview-item">
             <h1 className="title">{this.props.title}</h1>
@@ -19,3 +16,17 @@ export default class Preview extends Comment{
         </article>
     }
 }
+
+Preview.defaultProps = {
+    title:'',
+    date:'',
+    description:''
+};
+Preview.propTypes = {
+    title:PropTypes.string,
+    date:PropTypes.string,
+    description:PropTypes.string
+}
+
+
+export default Preview

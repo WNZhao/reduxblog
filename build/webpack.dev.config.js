@@ -14,9 +14,9 @@ module.exports = merge(baseWebpackconfig,{
 		new HtmlWebpackPlugin({
 			template:"./index.html",
 			inject:"body",
-			minify:{
+			/* minify:{
 				html5:true
-			},
+			}, */
 			hash:false
 		}),
 		/* new CleanWebpackPlugin(['../dist'],{
