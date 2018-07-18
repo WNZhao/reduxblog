@@ -8,7 +8,7 @@ import {Router, Route} from "react-router-dom"; //BrowserRouter 使用createBrow
 import Frame from "../layouts/Frame";
 
 const routes = (history)=>(<Router history={history}>
-	<Route path='/' component={Frame}></Route>
+  <Route path='/' component={Frame}></Route>
 </Router>);
 
 

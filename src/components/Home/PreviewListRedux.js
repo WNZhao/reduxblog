@@ -17,6 +17,24 @@ export function loadArticles() {
     }
 }
 
+export function loadArticlesOk(){
+    console.log('ok');
+    return {
+        type:LOAD_ARTICLES_SUCCESS,
+        payload:{articleList:[]}
+    }
+}
+
+export function loadArticlesFail(){
+    console.log('fail')
+    return {
+        type:LOAD_ARTICLES_ERROR
+    }
+}
+
+
+//todo
+
 function previewList(state = initialState, action) {
     switch (action.type) {
         case LOAD_ARTICLES:

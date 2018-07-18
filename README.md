@@ -22,3 +22,107 @@ views/HomeRedux.js包含了Home页面所有组件相关的reducer及actionCreato
 > import { createBrowserHistory } from 'history';
 > react-router最新版本已经支持或参看 https://github.com/supasate/connected-react-router
 
+
+### Redux Devtools
+
+```bash
+npm install --save-dev redux-devtools redux-devtools-log-monitor redux-devtools-dock-monitor
+```
+
+1. 创建DevTools.js
+
+```javascript
+import React from "react";
+import {createDevTools} from "redux-devtools";
+import LogMonitor from "redux-devtools-log-monitor";
+import DockMonitor from "redux-devtools-dock-monitor";
+
+const DevTools = createDevTools(
+    <DockMonitor toggleVisibilityKey='ctrl-h'
+    changePositionKey='ctrl-q'>
+    <LogMonitor theme='tomorrow' />
+    </DockMonitor>
+)
+
+export default DevTools;
+```
+
+2. 在compose中，在applyMiddleware()...后面添加 DevTools.instrument() 形如：
+
+```javascript
+const finalCreateStore = compose(
+    applyMiddleware(ThunkMiddleware),
+    //启用带有monitors(监视显示)的DevTools
+    DevTools.instrument()
+)(createStore);
+```
+3. 在页面中添加\<DevTools /> 标签
+
+## reducer的复用
+
+如果有A和B两个模块，它们的UI部分相似，些时可以通过配置不同的props来区别它们。那么这种情况下，A和B模块能不能共用一个reducer呢？
+答案是**不能**的。
+
+如果共用A调用B也会做同样的处理动作，所以要解决这个问题actionType必须全局唯一的。因此要解决actionType唯一的问题，有一个方法就是通过添加前缀的方式来做
+
+```javascript
+function generateReducer(prefix,state){
+    const LOAD_DATA = prefix + 'LOAD_DATA';
+    const initialState = {...state,...};
+    return function reducer(state=initialState,action){
+        switch(action.type){
+            case LOAD_DATA:
+            return {
+                ...state,
+                data:action.playload
+            }
+            default:
+                return state;
+        }
+    }
+}
+
+```
+
+prefix可以是$\{页面名称}_$\{模块名称}，只要能保证全局唯一性，就可以写成一种前缀
+
+高阶reducer主要通过下面3点来增强reducer:
+
+- 能够处理额外的action
+- 能够维护更多的state
+- 将不能处理的action委托给原始的reducer处理
+
+## redux与表单
+
+为了减少重复冗余的代码，可以使用redux-from-utils这个工具库，它能利用高阶组件的特性为表单的每个字段提供value和onChange等必须值，
+而对于复杂的表单，则可以使用redux-form。同样基于高阶组件的原理。它能同步验证，异步验证，嵌套表单验证
+
+
+## 简单的crud实例
+
+- 了解updeep
+- redux-immutable
+
+```javascript
+import {combineReducers} from "redux-immutable";
+import {createStore} from "redux";
+const initalState = Immutable.Map();
+const rootReducer = combineReducers({})
+const store = createStore(rootReducer,initialState)
+```
+
+## Reducer性能优化
+
+- logSlowReducers 它能够筛选出执行时间较高的reducer以及对应的action，从而有针对性地做优化
+- specialActions
+- batchActions([action1,action2,action3])
+
+## 深入redux
+
+### replaceReducer
+
+reducer的热替换
+
+## 服务器端渲染
+
+Koa官方已经为我们实现了react-view Node的View引擎 react-view

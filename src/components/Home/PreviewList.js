@@ -6,6 +6,9 @@ import Preview from './Preview';
 class PreviewList extends Component {
 
   componentDidMount(){
+      console.log(this.props,"?????");
+      console.log(this.props.loadArticlesOk(),"?????");
+      console.log(this.props.loadArticlesFail(),"?????");
       this.props.loadArticles();
   }
   
