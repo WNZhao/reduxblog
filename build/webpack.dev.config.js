@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const baseWebpackconfig = require("./webpack.basic.config");
 const webpack = require("webpack");
+//const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 module.exports = merge(baseWebpackconfig,{
@@ -25,12 +26,14 @@ module.exports = merge(baseWebpackconfig,{
 		new webpack.HotModuleReplacementPlugin()
 	],
 	devServer:{
+		publicPath:'/',
 		port:"8080",
 		historyApiFallback:true,
 		hot:true,
 		// https:true,
 		open:true,
 		noInfo:true,
-		proxy:{}
+		proxy:{},
+		contentBase: path.join(__dirname, '../src') //静态资源服务
 	}
 });
