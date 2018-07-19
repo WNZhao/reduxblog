@@ -17,7 +17,7 @@ class PreviewList extends Component {
     if(loading){
         return <div className="message">Loading....</div>
     } 
-    return (this.props.articleList.map(item=>(<Preview {...item} key={item.id} />)))
+    return (this.props.articleList.map(item=>(<Preview key={item.id} {...item} />)))
   }
 }
 

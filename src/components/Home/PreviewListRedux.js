@@ -1,4 +1,3 @@
-import axios from "axios";
 
 const initialState = {
     loading: true,
@@ -12,12 +11,14 @@ const LOAD_ARTICLES_ERROR = "LOAD_ARTICLES_ERROR";
 
 export function loadArticles() {
 
-    const success = (articleList) => {
+   //处理异步请求 方式一 redux-chunk return 函数
+   return function(dispatch){
+    const success = (response) => {
+        console.log(JSON.parse(response.data));
         dispatch({
             type: 'LOAD_ARTICLES_SUCCESS',
-            payload: {articleList:articleList.data}
+            payload: {articleList:JSON.parse(response.data)}
         })
-        return result
     }
 
     const fail = (err) => {
@@ -25,14 +26,19 @@ export function loadArticles() {
             type: 'LOAD_ARTICLES_ERROR',
             payload:err
         })
-        return err
     }
-    //两种模式， Async\Await 的更加直观和简洁，是未来的趋势。但是目前，还需要利用babel的 transform-async-to-module-method 插件来转换其成为浏览器支持的语法，虽然没有性能的提升，但对于代码编写体验要更好
-    return dispatch => {
-        return axios.get('./api/articles.json')
-        .then(success)
-        .catch(fail)
-    }
+
+    fetch('./api/articles.json')
+    .then(response => response.json())
+    .then(json =>{
+        console.log(json)
+        dispatch({
+            type: 'LOAD_ARTICLES_SUCCESS',
+            payload: {articleList:json}}
+        )
+    });
+  };
+ 
 }
 
 

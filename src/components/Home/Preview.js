@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'; //see https://reactjs.org/docs/typechecking-
 import "./Preview.css";
 
 
-class Preview extends Comment{
+class Preview extends Component{
     render(){
         return <article className="article-preview-item">
             <h1 className="title">{this.props.title}</h1>

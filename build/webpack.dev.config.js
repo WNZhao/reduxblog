@@ -11,6 +11,7 @@ module.exports = merge(baseWebpackconfig,{
 	output:{
 		filename:"js/[name].[hash:8].js"
 	},
+	devtool: 'inline-source-map',//映射源码
 	plugins:[
 		new HtmlWebpackPlugin({
 			template:"./index.html",
