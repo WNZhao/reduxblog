@@ -6,7 +6,8 @@ import Preview from './Preview';
 class PreviewList extends Component {
 
   componentDidMount(){
-      this.props.loadArticles();
+      //this.props.loadArticles(); //redux-chunk
+      this.props.getData(); //redux-promise type1
   }
   
   render() {
