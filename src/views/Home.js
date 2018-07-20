@@ -11,7 +11,8 @@ class Home extends Component{
 			<h1>Home</h1>
 			<PreviewList
 			  {...this.props.list}
-			  {...this.props.listActions}
+			
+			  getDataNew = {this.props.getDataNew}
 			/>
 		</div>);
 
@@ -23,8 +24,14 @@ export default connect(state=>{
 	return {
 		list:state.home.list,
 	}
-},dispatch=>{
+},(dispatch)=>{
+	
 	return {
-		listActions:bindActionCreators(listActions,dispatch)
+		//listActions:bindActionCreators(listActions,dispatch) //use redux-thunk
+		//getData:()=>dispatch(listActions.getData()) //use redux-promise type1
+	/* 	getDataNew:()=>{
+			console.log(listActions.getDataNew())
+			dispatch(listActions.getDataNew())
+		} */
 	}
 })(withRouter(Home));

@@ -126,3 +126,20 @@ reducer的热替换
 ## 服务器端渲染
 
 Koa官方已经为我们实现了react-view Node的View引擎 react-view
+
+
+### 题外--异步请求与redux的使用
+
+- redux-thunk
+- redux-promise
+- redux-promise-middleware
+- redux-saga
+    - https://segmentfault.com/a/1190000007261052?_ea=1290634
+    - 优点：
+        - （1）集中处理了所有的异步操作，异步接口部分一目了然
+        - （2）action是普通对象，这跟redux同步的action一模一样
+        - （3）通过Effect，方便异步接口的测试
+        - （4）通过worker 和watcher可以实现非阻塞异步调用，并且同时可以实
+        - （5）声明式 Effects：所有的操作以JavaScript对象的方式被 yield，并被 middleware 执行。使得在 saga 内部测试变得更加容易，可以通过简单地遍历 Generator 并在 yield 后的成功值上面做一个 deepEqual 测试。
+        - （6）高级的异步控制流以及并发管理：可以使用简单的同步方式描述异步流，并通过 fork 实现并发任务。
+        - （7）架构上的优势：将所有的异步流程控制都移入到了 sagas，UI 组件不用执行业务逻辑，只需 dispatch action 就行，增强组件复用性。
