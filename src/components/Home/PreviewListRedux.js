@@ -85,6 +85,7 @@ const GET_DATA_NEW_REJECTED = "GET_DATA_NEW_REJECTED";
 //todo
 
 function previewList(state = initialState, action) {
+    console.log(action.type)
     switch (action.type) {
         case LOAD_ARTICLES:
             return Object.assign({}, state, {

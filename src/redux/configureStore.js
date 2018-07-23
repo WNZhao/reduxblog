@@ -6,13 +6,10 @@ import {routerReducer} from "react-router-redux";
 import createSagaMiddleware from "redux-saga"
 import rootReducer,{listActions} from "./reducers";
 //import saga
-import {sagaGetData} from "../components/Home/PreviewListRedux"
+import {sagaGetData} from "../components/Home/rootSaga"
 import DevTools from "./DevTools"
 
-debugger;
-console.log()
-
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware(sagaGetData);
 
 const finalCreateStore = compose(
     //applyMiddleware(promiseMiddleware()), 
