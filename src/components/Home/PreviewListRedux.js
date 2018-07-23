@@ -74,18 +74,12 @@ export const getData = function () {
     })
 }
 
+//
+
 const GET_DATA_NEW = "GET_DATA_NEW";
 const GET_DATA_NEW_PENDING = "GET_DATA_NEW_PENDING";
 const GET_DATA_NEW_FULFILLED = "GET_DATA_NEW_FULFILLED";
 const GET_DATA_NEW_REJECTED = "GET_DATA_NEW_REJECTED";
-
-//use redux-promise-middleware
-
-
-
-//redux-saga用法
-
-
 
 
 //todo

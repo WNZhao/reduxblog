@@ -28,7 +28,7 @@ module.exports = merge(baseWebpackconfig,{
 	],
 	devServer:{
 		publicPath:'/',
-		port:"8080",
+		port:"9898",
 		historyApiFallback:true,
 		hot:true,
 		// https:true,

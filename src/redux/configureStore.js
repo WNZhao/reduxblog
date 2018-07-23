@@ -4,8 +4,13 @@ import {routerReducer} from "react-router-redux";
 // import promiseMiddleware  from "redux-promise"; //处理返回promise
 // import promiseMiddleware from "redux-promise-middleware"; //利用redux-promise-middle来实现
 import createSagaMiddleware from "redux-saga"
-import rootReducer from "./reducers";
+import rootReducer,{listActions} from "./reducers";
+//import saga
+import {sagaGetData} from "../components/Home/PreviewListRedux"
 import DevTools from "./DevTools"
+
+debugger;
+console.log()
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,6 +25,6 @@ const reducer = combineReducers(Object.assign({},rootReducer,{routing:routerRedu
 
 export default function configureStore(initialState){
     const store = finalCreateStore(reducer,initialState);
-    //sagaMiddleware.run()
+    sagaMiddleware.run(sagaGetData)
     return store;
 }
